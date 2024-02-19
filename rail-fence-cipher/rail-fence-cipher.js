@@ -3,23 +3,61 @@
 // convenience to get you started writing code faster.
 //
 export const encode = (string, railsCount) => {
-  const rails = Array(railsCount).fill("");
+  const rails = Array(railsCount).fill('');
   let rail = 0;
   let reverse = false;
-  for (let char in string) {
+  for (const char in string) {
     rails[rail] += string[char];
-    if (!reverse){
-      rail++
-    } else if (reverse){
-      rail--
+    if (!reverse) {
+      rail += 1;
+    } else if (reverse) {
+      rail -= 1;
     }
-    if (rail === railsCount - 1 || rail === 0){
+    if (rail === railsCount - 1 || rail === 0) {
       reverse = !reverse;
-    } 
+    }
   }
-  return rails.join("");
+  return rails.join('');
 };
 
-export const decode = (str, rails) => {
-  throw new Error('Remove this statement and implement this function');
+
+export const decode = (string, railsCount) => {
+  const rails = Array(railsCount).fill('');
+  let decoded = '';
+  let rail = 0;
+  let reverse = false;
+  for (const char in string) {
+    rails[rail] += '*';
+    if (!reverse) {
+      rail += 1;
+    } else if (reverse) {
+      rail -= 1;
+    }
+    if (rail === railsCount - 1 || rail === 0) {
+      reverse = !reverse;
+    }
+  }
+  let charIndex = 0;
+  for (const rail in rails) {
+    const { length } = rails[rail];
+    rails[rail] = string.slice(charIndex, charIndex + length);
+    charIndex += length;
+  }
+  rail = 0;
+  reverse = false;
+  for (const char in string) {
+    decoded += rails[rail].charAt(0);
+    rails[rail] = rails[rail].slice(1);
+    if (!reverse) {
+      rail += 1;
+    } else if (reverse) {
+      rail -= 1;
+    }
+    if (rail === railsCount - 1 || rail === 0) {
+      reverse = !reverse;
+    }
+  }
+  return decoded;
 };
+
+
