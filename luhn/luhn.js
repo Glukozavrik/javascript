@@ -10,7 +10,6 @@ export const valid = (numbers) => {
       spl.push(num)
     }
   })
-  console.log(spl)
   const newArr = [];
   let multiNum = 0;
   let counter = 0;
