@@ -12,7 +12,7 @@ export const chain = (dominoes) => {
   } else {
     chained.push(dominoes[dominoes.length - 1]);
     dominoes.pop();
-    for (let i = 0; i <= dominoes.length; i += 1) {
+    for (let i = 0; i <= dominoes.length + 1; i += 1) {
       dominoes.forEach((rock, index) => {
         if (rock[0] === chained[chained.length - 1][1]) {
           chained.push(rock);
@@ -31,9 +31,13 @@ export const chain = (dominoes) => {
     }
   }
   console.log(chained);
+  console.log(dominoes);
   let chain =
     dominoes.length === 0
       ? chained[0][0] === chained[chained.length - 1][1]
+        ? dominoes
+        : null
       : null;
+  console.log(chain);
   return chain;
 };
