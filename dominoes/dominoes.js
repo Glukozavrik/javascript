@@ -30,11 +30,9 @@ export const chain = (dominoes) => {
       });
     }
   }
-  let chain =
-    dominoes.length === 0
-      ? chained[0][0] === chained[chained.length - 1][1]
-        ? dominoes
-        : null
-      : null;
-  return chain;
+  if (dominoes.length === 0 && chained[0][0] === chained[chained.length - 1][1]) {
+    return dominoes;
+  } else {
+    return null;
+  }
 };
