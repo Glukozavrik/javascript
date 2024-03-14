@@ -16,23 +16,22 @@ let allergens = [
 export class Allergies {
   constructor(input) {
     this.numb = input;
-    this.allergic = []
+    this.allergic = [];
   }
 
   list() {
     this.allergic.length = 0;
     for (let i = 8; i >= 0; i -= 1) {
-     if (this.numb >= Math.pow(2, i)) {
+      if (this.numb >= Math.pow(2, i)) {
         this.numb -= Math.pow(2, i);
         this.allergic.unshift(allergens[i]);
+      }
     }
-    
+    return this.allergic;
   }
-  return this.allergic;
-}
 
   allergicTo(allergen) {
-    this.list()
+    this.list();
     return this.allergic.includes(allergen);
   }
 }
